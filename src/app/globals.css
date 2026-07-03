@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-duo-gray-500 antialiased;
+  }
+}
+
+@layer components {
+  .btn-option {
+    @apply w-full rounded-2xl border-2 border-b-4 border-duo-gray-200 bg-white p-4 text-left text-lg font-medium transition-all active:border-b-2 active:mt-[2px];
+  }
+  .btn-option-selected {
+    @apply border-duo-blue bg-blue-50 text-duo-blue;
+  }
+  .btn-option-correct {
+    @apply border-duo-green bg-green-50 text-duo-green-dark;
+  }
+  .btn-option-wrong {
+    @apply border-duo-red bg-red-50 text-duo-red;
+  }
+  .btn-primary {
+    @apply w-full rounded-2xl border-b-4 border-[#4CAD00] bg-duo-green px-6 py-4 text-center text-lg font-bold text-white uppercase tracking-wide transition-all active:border-b-0 active:mt-1;
+  }
+  .card {
+    @apply rounded-2xl border-2 border-duo-gray-200 bg-white p-5;
+  }
+}
+
+/* XP float-up animation */
+@keyframes xp-float {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.1);
+  }
+  40% {
+    transform: translateY(-10px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.9);
+  }
+}
+
+.xp-float {
+  animation: xp-float 1.8s ease-out forwards;
+}

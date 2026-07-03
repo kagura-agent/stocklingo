@@ -1,0 +1,31 @@
+{
+  "market": "a-shares",
+  "name": "A股市场",
+  "icon": "🇨🇳",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "股票是什么",
+      "titleEn": "What is a Stock",
+      "description": "从零开始，搞懂股票的本质和A股的基本规则",
+      "levels": 5,
+      "unlockCondition": null
+    },
+    {
+      "id": 2,
+      "title": "看懂行情",
+      "titleEn": "Reading the Market",
+      "description": "K线、成交量、估值指标——看懂市场在说什么",
+      "levels": 5,
+      "unlockCondition": { "chapter": 1, "minScore": 0.6 }
+    },
+    {
+      "id": 3,
+      "title": "牛熊往事",
+      "titleEn": "Bulls & Bubbles",
+      "description": "穿越A股20年，在历史事件中学会生存",
+      "levels": 5,
+      "unlockCondition": { "chapter": 2, "minScore": 0.6 }
+    }
+  ]
+}
