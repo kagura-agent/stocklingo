@@ -1,4 +1,10 @@
 
+## North Star
+
+教会 Luna 炒股。从零到能独立看盘、理解市场逻辑、做出自己的交易决策。
+
+成功标准：Luna 做完一个章节后能用自己的话解释核心概念，而不只是选对答案。
+
 ## Roadmap (Self-Driven, 2026-07-29)
 
 ### Phase 1 — Content & Polish (This Week)

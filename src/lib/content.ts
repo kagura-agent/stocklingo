@@ -3,17 +3,20 @@ import type { MarketMeta, Question } from "./types";
 import chapter1Data from "../../content/a-shares/chapter-1.json";
 import chapter2Data from "../../content/a-shares/chapter-2.json";
 import chapter3Data from "../../content/a-shares/chapter-3.json";
+import chapter4Data from "../../content/a-shares/chapter-4.json";
 import metadataData from "../../content/a-shares/metadata.json";
 
 const chapter1 = chapter1Data as Question[];
 const chapter2 = chapter2Data as Question[];
 const chapter3 = chapter3Data as Question[];
+const chapter4 = chapter4Data as Question[];
 const metadata = metadataData as MarketMeta;
 
 const chapterMap: Record<number, Question[]> = {
   1: chapter1,
   2: chapter2,
   3: chapter3,
+  4: chapter4,
 };
 
 export function getMetadata(): MarketMeta {

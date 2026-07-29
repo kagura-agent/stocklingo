@@ -26,6 +26,14 @@
       "description": "穿越A股20年，在历史事件中学会生存",
       "levels": 5,
       "unlockCondition": { "chapter": 2, "minScore": 0.6 }
+    },
+    {
+      "id": 4,
+      "title": "技术分析入门",
+      "titleEn": "Technical Analysis 101",
+      "description": "K线、均线、成交量——用图表读懂市场的语言",
+      "levels": 5,
+      "unlockCondition": { "chapter": 3, "minScore": 0.6 }
     }
   ]
 }
