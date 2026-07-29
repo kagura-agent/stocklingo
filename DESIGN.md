@@ -8,7 +8,7 @@
 ## Roadmap (Self-Driven, 2026-07-29)
 
 ### Phase 1 — Content & Polish (This Week)
-- [ ] Ch4: 技术分析入门 (K线/均线/量价)
+- [x] Ch4: 技术分析入门 (K线/均线/量价)
 - [ ] Ch5: 基金与ETF
 - [ ] Ch6: 交易心理与纪律
 - [ ] 答题反馈动效优化
