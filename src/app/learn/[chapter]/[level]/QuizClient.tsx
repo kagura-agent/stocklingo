@@ -30,8 +30,9 @@ export default function QuizClient({
   const [xpEarned, setXpEarned] = useState(0);
   const [showXP, setShowXP] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
 
-  // Handle case where there are no questions for this level
   if (questions.length === 0 && !finished) {
     return (
       <div className="flex flex-col items-center gap-6 px-6 pt-20">
@@ -60,7 +61,10 @@ export default function QuizClient({
       setScore((s) => s + 1);
       setXpEarned((x) => x + q.xp);
       setShowXP(true);
+      setStreak((s) => s + 1);
       setTimeout(() => setShowXP(false), 1800);
+    } else {
+      setStreak(0);
     }
   }
 
@@ -71,9 +75,13 @@ export default function QuizClient({
       completeLevel(chapter, level, finalScore, questions.length, finalXP);
       setFinished(true);
     } else {
-      setCurrentIndex((i) => i + 1);
-      setSelected(null);
-      setAnswerState("unanswered");
+      setTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex((i) => i + 1);
+        setSelected(null);
+        setAnswerState("unanswered");
+        setTransitioning(false);
+      }, 200);
     }
   }
 
@@ -101,7 +109,7 @@ export default function QuizClient({
 
   return (
     <div className="space-y-6 px-6 pt-6 pb-8">
-      {showXP && <XPAnimation xp={q.xp} />}
+      {showXP && <XPAnimation xp={q.xp} streak={streak} />}
 
       <ProgressBar
         current={currentIndex + 1}
@@ -109,22 +117,36 @@ export default function QuizClient({
         onClose="/learn"
       />
 
-      <QuestionCard story={q.story} question={q.question} type={q.type} />
+      {streak >= 2 && answerState === "unanswered" && (
+        <div className="flex justify-center animate-streak-pop">
+          <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-bold text-duo-orange">
+            🔥x{streak}
+          </span>
+        </div>
+      )}
 
-      <div className="space-y-3">
-        {q.options.map((opt, idx) => (
-          <OptionButton
-            key={idx}
-            label={opt}
-            state={getOptionState(idx)}
-            onClick={() => handleSelect(idx)}
-            disabled={answerState !== "unanswered"}
-          />
-        ))}
+      <div
+        className={`transition-all duration-200 ${
+          transitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
+        }`}
+      >
+        <QuestionCard story={q.story} question={q.question} type={q.type} />
+
+        <div className="space-y-3 mt-6">
+          {q.options.map((opt, idx) => (
+            <OptionButton
+              key={idx}
+              label={opt}
+              state={getOptionState(idx)}
+              onClick={() => handleSelect(idx)}
+              disabled={answerState !== "unanswered"}
+            />
+          ))}
+        </div>
       </div>
 
       {answerState !== "unanswered" && (
-        <div className="space-y-4">
+        <div className="space-y-4 animate-slide-up-fade">
           <div
             className={`rounded-2xl p-4 ${
               answerState === "correct"
