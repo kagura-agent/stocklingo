@@ -16,9 +16,9 @@ export default function OptionButton({
   const stateClass: Record<OptionState, string> = {
     default: "btn-option",
     selected: "btn-option btn-option-selected",
-    correct: "btn-option btn-option-correct",
-    wrong: "btn-option btn-option-wrong",
-    missed: "btn-option btn-option-correct opacity-60",
+    correct: "btn-option btn-option-correct animate-pulse-correct shadow-[0_0_12px_rgba(88,204,2,0.4)]",
+    wrong: "btn-option btn-option-wrong animate-shake",
+    missed: "btn-option btn-option-correct animate-pulse-correct opacity-60",
   };
 
   return (

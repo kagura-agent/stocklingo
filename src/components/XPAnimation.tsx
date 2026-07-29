@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-export default function XPAnimation({ xp }: { xp: number }) {
+export default function XPAnimation({
+  xp,
+  streak = 0,
+}: {
+  xp: number;
+  streak?: number;
+}) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -12,10 +18,19 @@ export default function XPAnimation({ xp }: { xp: number }) {
 
   if (!visible) return null;
 
+  const enhanced = streak >= 5;
+
   return (
     <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
-      <div className="xp-float text-4xl font-black text-duo-green drop-shadow-lg">
+      <div
+        className={`xp-float font-black drop-shadow-lg ${
+          enhanced
+            ? "text-5xl text-duo-orange"
+            : "text-4xl text-duo-green"
+        }`}
+      >
         +{xp} XP
+        {enhanced && <span className="ml-2">🔥</span>}
       </div>
     </div>
   );
