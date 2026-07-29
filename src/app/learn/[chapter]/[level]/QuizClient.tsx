@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Question } from "@/lib/types";
 import { completeLevel } from "@/lib/progress";
+import { saveWrongAnswer, removeWrongAnswer } from "@/lib/wrong-answers";
 import ProgressBar from "@/components/ProgressBar";
 import QuestionCard from "@/components/QuestionCard";
 import OptionButton from "@/components/OptionButton";
@@ -63,8 +64,10 @@ export default function QuizClient({
       setShowXP(true);
       setStreak((s) => s + 1);
       setTimeout(() => setShowXP(false), 1800);
+      removeWrongAnswer(`${chapter}-${level}-${q.id}`);
     } else {
       setStreak(0);
+      saveWrongAnswer(q, chapter, level, idx);
     }
   }
 
