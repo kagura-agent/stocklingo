@@ -42,6 +42,14 @@
       "description": "从余额宝到沪深300ETF——用基金轻松投资一篮子股票",
       "levels": 5,
       "unlockCondition": { "chapter": 4, "minScore": 0.6 }
+    },
+    {
+      "id": 6,
+      "title": "交易心理与纪律",
+      "titleEn": "Trading Psychology",
+      "description": "战胜贪婪与恐惧——成为理性投资者的心理修炼",
+      "levels": 5,
+      "unlockCondition": { "chapter": 5, "minScore": 0.6 }
     }
   ]
 }
