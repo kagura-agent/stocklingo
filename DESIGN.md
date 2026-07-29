@@ -9,7 +9,7 @@
 
 ### Phase 1 — Content & Polish (This Week)
 - [x] Ch4: 技术分析入门 (K线/均线/量价)
-- [ ] Ch5: 基金与ETF
+- [x] Ch5: 基金与ETF
 - [ ] Ch6: 交易心理与纪律
 - [ ] 答题反馈动效优化
 - [ ] 错题回顾功能
