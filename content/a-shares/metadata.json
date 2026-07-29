@@ -34,6 +34,14 @@
       "description": "K线、均线、成交量——用图表读懂市场的语言",
       "levels": 5,
       "unlockCondition": { "chapter": 3, "minScore": 0.6 }
+    },
+    {
+      "id": 5,
+      "title": "基金与ETF",
+      "titleEn": "Funds & ETFs",
+      "description": "从余额宝到沪深300ETF——用基金轻松投资一篮子股票",
+      "levels": 5,
+      "unlockCondition": { "chapter": 4, "minScore": 0.6 }
     }
   ]
 }
