@@ -18,7 +18,7 @@
 - [x] 每日一题
 - [x] 间隔重复复习
 - [x] 分享成绩卡片
-- [ ] 港股/美股基础内容
+- [x] 港股/美股基础内容
 
 ### Phase 3 — Growth (When Ready)
 - [ ] 用户系统 (Supabase Auth)
