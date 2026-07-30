@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { loadProgress } from "@/lib/progress";
 import type { UserProgress } from "@/lib/types";
+import { generateProfileCard, shareCanvas } from "@/lib/shareCard";
 import BottomNav from "@/components/BottomNav";
 
 export default function ProfilePage() {
@@ -22,10 +23,27 @@ export default function ProfilePage() {
 
   const completedCount = Object.keys(progress.completedLevels).length;
 
+  function handleShare() {
+    const canvas = generateProfileCard({
+      totalXp: progress!.xp,
+      streak: progress!.streak.count,
+      completedLevels: completedCount,
+    });
+    shareCanvas(canvas);
+  }
+
   return (
     <>
       <div className="space-y-6 px-6 pt-10">
-        <h1 className="text-2xl font-black">我的</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-black">我的</h1>
+          <button
+            onClick={handleShare}
+            className="rounded-xl border-2 border-duo-green px-4 py-2 text-sm font-bold text-duo-green transition-colors hover:bg-duo-green hover:text-white"
+          >
+            分享成绩
+          </button>
+        </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="card flex flex-col items-center gap-2 py-6">
