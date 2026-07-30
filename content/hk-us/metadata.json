@@ -26,6 +26,30 @@
       "description": "美联储、财报季、期权——全球投资者的必修课",
       "levels": 5,
       "unlockCondition": { "chapter": 2, "minScore": 0.6 }
+    },
+    {
+      "id": 4,
+      "title": "全球ETF与被动投资",
+      "titleEn": "Global ETFs & Passive Investing",
+      "description": "从SPY到盈富基金——用ETF轻松配置全球资产",
+      "levels": 5,
+      "unlockCondition": { "chapter": 3, "minScore": 0.6 }
+    },
+    {
+      "id": 5,
+      "title": "看懂财报",
+      "titleEn": "Reading Earnings",
+      "description": "读懂美股财报季——EPS、Revenue、Guidance的秘密",
+      "levels": 5,
+      "unlockCondition": { "chapter": 4, "minScore": 0.6 }
+    },
+    {
+      "id": 6,
+      "title": "风险管理与实战",
+      "titleEn": "Risk Management",
+      "description": "仓位管理、汇率对冲、止损策略——海外投资的生存指南",
+      "levels": 5,
+      "unlockCondition": { "chapter": 5, "minScore": 0.6 }
     }
   ]
 }

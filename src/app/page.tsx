@@ -37,7 +37,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-bold">港美股市场</h3>
               <p className="text-sm text-duo-gray-300">
-                港美股入门，3章 · 15关
+                港美股入门，6章 · 30关
               </p>
             </div>
           </Link>
