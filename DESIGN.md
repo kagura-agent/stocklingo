@@ -19,6 +19,7 @@
 - [x] 间隔重复复习
 - [x] 分享成绩卡片
 - [x] 港股/美股基础内容
+- [x] PWA 支持（安装到桌面 + 离线访问）
 
 ### Phase 3 — Growth (When Ready)
 - [ ] 用户系统 (Supabase Auth)
