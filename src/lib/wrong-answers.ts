@@ -5,6 +5,7 @@ import { addToSRS } from "./srs";
 
 export interface WrongAnswer {
   id: string;
+  market: string;
   chapter: number;
   level: number;
   question: Question;
@@ -27,16 +28,18 @@ export function getWrongAnswers(): WrongAnswer[] {
 
 export function saveWrongAnswer(
   q: Question,
+  market: string,
   chapter: number,
   level: number,
   userAnswer: number
 ): void {
   if (typeof window === "undefined") return;
   const answers = getWrongAnswers();
-  const id = `${chapter}-${level}-${q.id}`;
+  const id = `${market}-${chapter}-${level}-${q.id}`;
   const existing = answers.findIndex((a) => a.id === id);
   const entry: WrongAnswer = {
     id,
+    market,
     chapter,
     level,
     question: q,

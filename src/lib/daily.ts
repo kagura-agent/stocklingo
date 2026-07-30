@@ -1,7 +1,7 @@
 "use client";
 
 import type { Question } from "./types";
-import { getMetadata, getChapterQuestions } from "./content";
+import { getMarkets, getChapterQuestions } from "./content";
 import { loadProgress, saveProgress } from "./progress";
 
 const STORAGE_KEY = "stocklingo-daily";
@@ -52,31 +52,35 @@ function simpleHash(str: string): number {
   return Math.abs(hash);
 }
 
-function getCompletedChapterIds(): number[] {
+function getCompletedChapterIds(): { market: string; chapterId: number }[] {
   const progress = loadProgress();
-  const meta = getMetadata();
-  const completed: number[] = [];
+  const allMarkets = getMarkets();
+  const completed: { market: string; chapterId: number }[] = [];
 
-  for (const ch of meta.chapters) {
-    let allDone = true;
-    for (let l = 1; l <= ch.levels; l++) {
-      if (!progress.completedLevels[`${ch.id}-${l}`]) {
-        allDone = false;
-        break;
+  for (const meta of allMarkets) {
+    for (const ch of meta.chapters) {
+      let allDone = true;
+      for (let l = 1; l <= ch.levels; l++) {
+        if (!progress.completedLevels[`${meta.market}-${ch.id}-${l}`]) {
+          allDone = false;
+          break;
+        }
       }
+      if (allDone) completed.push({ market: meta.market, chapterId: ch.id });
     }
-    if (allDone) completed.push(ch.id);
   }
   return completed;
 }
 
 export function getDailyQuestion(): Question {
   const completedChapters = getCompletedChapterIds();
-  const sourceChapters = completedChapters.length > 0 ? completedChapters : [1];
+  const sources = completedChapters.length > 0
+    ? completedChapters
+    : [{ market: "a-shares", chapterId: 1 }];
 
   const allQuestions: Question[] = [];
-  for (const chId of sourceChapters) {
-    allQuestions.push(...getChapterQuestions(chId));
+  for (const { market, chapterId } of sources) {
+    allQuestions.push(...getChapterQuestions(market, chapterId));
   }
 
   const today = getToday();

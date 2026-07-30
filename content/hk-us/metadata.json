@@ -1,0 +1,31 @@
+{
+  "market": "hk-us",
+  "name": "港美股市场",
+  "icon": "🌏",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "港美股入门",
+      "titleEn": "HK & US Markets 101",
+      "description": "开户、交易规则、主要指数——踏出全球投资第一步",
+      "levels": 5,
+      "unlockCondition": null
+    },
+    {
+      "id": 2,
+      "title": "中概股与跨市场",
+      "titleEn": "Cross-Market Investing",
+      "description": "ADR、港股通、QDII——理解中概股的跨境生态",
+      "levels": 5,
+      "unlockCondition": { "chapter": 1, "minScore": 0.6 }
+    },
+    {
+      "id": 3,
+      "title": "全球宏观视野",
+      "titleEn": "Global Macro",
+      "description": "美联储、财报季、期权——全球投资者的必修课",
+      "levels": 5,
+      "unlockCondition": { "chapter": 2, "minScore": 0.6 }
+    }
+  ]
+}
