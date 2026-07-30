@@ -11,6 +11,9 @@ import aSharesMetadata from "../../content/a-shares/metadata.json";
 import hkUsChapter1 from "../../content/hk-us/chapter-1.json";
 import hkUsChapter2 from "../../content/hk-us/chapter-2.json";
 import hkUsChapter3 from "../../content/hk-us/chapter-3.json";
+import hkUsChapter4 from "../../content/hk-us/chapter-4.json";
+import hkUsChapter5 from "../../content/hk-us/chapter-5.json";
+import hkUsChapter6 from "../../content/hk-us/chapter-6.json";
 import hkUsMetadata from "../../content/hk-us/metadata.json";
 
 type MarketId = "a-shares" | "hk-us";
@@ -33,6 +36,9 @@ const markets: Record<MarketId, { metadata: MarketMeta; chapters: Record<number,
       1: hkUsChapter1 as Question[],
       2: hkUsChapter2 as Question[],
       3: hkUsChapter3 as Question[],
+      4: hkUsChapter4 as Question[],
+      5: hkUsChapter5 as Question[],
+      6: hkUsChapter6 as Question[],
     },
   },
 };
