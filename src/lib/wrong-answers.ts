@@ -1,6 +1,7 @@
 "use client";
 
 import type { Question } from "./types";
+import { addToSRS } from "./srs";
 
 export interface WrongAnswer {
   id: string;
@@ -48,6 +49,7 @@ export function saveWrongAnswer(
     answers.push(entry);
   }
   localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+  addToSRS(entry);
 }
 
 export function removeWrongAnswer(id: string): void {
