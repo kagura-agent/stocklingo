@@ -21,6 +21,7 @@
 - [x] 港股/美股基础内容
 - [x] PWA 支持（安装到桌面 + 离线访问）
 - [x] 港美股内容扩展至 6 章 30 关 (ETF/财报/风险管理)
+- [x] 术语表/词汇索引（可搜索的金融术语 Glossary）
 
 ### Phase 3 — Growth (When Ready)
 - [ ] 用户系统 (Supabase Auth)
