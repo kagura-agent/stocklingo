@@ -2,24 +2,26 @@
 
 import Link from "next/link";
 import { generateLevelCard, shareCanvas } from "@/lib/shareCard";
-import { getMetadata } from "@/lib/content";
+import { getMarketMetadata } from "@/lib/content";
 
 export default function LevelSummary({
   score,
   total,
   xpEarned,
+  market,
   chapter,
 }: {
   score: number;
   total: number;
   xpEarned: number;
+  market: string;
   chapter: number;
 }) {
   const pct = Math.round((score / total) * 100);
   const passed = pct >= 60;
 
   function handleShare() {
-    const meta = getMetadata();
+    const meta = getMarketMetadata(market);
     const chapterMeta = meta.chapters.find((c) => c.id === chapter);
     const chapterName = chapterMeta ? chapterMeta.title : `第${chapter}章`;
     const canvas = generateLevelCard({ chapterName, score, total, xpEarned });
@@ -41,7 +43,7 @@ export default function LevelSummary({
         {passed ? "太棒了！继续前进！" : "再接再厉，重新挑战！"}
       </p>
       <div className="mt-4 flex gap-3">
-        <Link href="/learn" className="btn-primary inline-block">
+        <Link href={`/learn/${market}`} className="btn-primary inline-block">
           返回学习
         </Link>
         <button

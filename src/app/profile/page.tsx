@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { loadProgress } from "@/lib/progress";
 import type { UserProgress } from "@/lib/types";
 import { generateProfileCard, shareCanvas } from "@/lib/shareCard";
+import { getMarkets } from "@/lib/content";
 import BottomNav from "@/components/BottomNav";
 
 export default function ProfilePage() {
@@ -22,6 +23,10 @@ export default function ProfilePage() {
   }
 
   const completedCount = Object.keys(progress.completedLevels).length;
+  const totalLevels = getMarkets().reduce(
+    (sum, m) => sum + m.chapters.reduce((s, ch) => s + ch.levels, 0),
+    0
+  );
 
   function handleShare() {
     const canvas = generateProfileCard({
@@ -64,12 +69,12 @@ export default function ProfilePage() {
           <h2 className="font-bold">学习进度</h2>
           <div className="flex items-center justify-between text-sm">
             <span className="text-duo-gray-400">已完成关卡</span>
-            <span className="font-bold">{completedCount} / 15</span>
+            <span className="font-bold">{completedCount} / {totalLevels}</span>
           </div>
           <div className="h-3 w-full rounded-full bg-duo-gray-200">
             <div
               className="h-3 rounded-full bg-duo-green transition-all"
-              style={{ width: `${(completedCount / 15) * 100}%` }}
+              style={{ width: `${(completedCount / totalLevels) * 100}%` }}
             />
           </div>
         </div>

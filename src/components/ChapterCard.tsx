@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 export default function ChapterCard({
+  market,
   id,
   title,
   titleEn,
@@ -11,6 +12,7 @@ export default function ChapterCard({
   locked,
   completedLevels,
 }: {
+  market: string;
   id: number;
   title: string;
   titleEn: string;
@@ -40,7 +42,7 @@ export default function ChapterCard({
             return (
               <Link
                 key={level}
-                href={`/learn/${id}/${level}`}
+                href={`/learn/${market}/${id}/${level}`}
                 className={`flex h-12 w-12 items-center justify-center rounded-full border-2 border-b-4 font-bold transition-all ${
                   done
                     ? "border-duo-green bg-duo-green text-white"

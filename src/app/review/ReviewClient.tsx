@@ -58,7 +58,6 @@ export default function ReviewClient() {
     return "default";
   }
 
-  // Wrong answers tab handlers
   function handleClear() {
     if (!confirm("确定要清空所有错题吗？")) return;
     clearAllWrongAnswers();
@@ -89,6 +88,11 @@ export default function ReviewClient() {
     if (idx === item.question.answer) return "correct";
     if (idx === wrongSelected) return "wrong";
     return "default";
+  }
+
+  function formatSource(item: { market?: string; chapter: number; level: number }) {
+    const marketLabel = item.market === "hk-us" ? "港美股" : "A股";
+    return `${marketLabel} · 第${item.chapter}章 · 第${item.level}关`;
   }
 
   return (
@@ -142,7 +146,7 @@ export default function ReviewClient() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-duo-gray-300">
-                  第{currentCard.chapter}章 · 第{currentCard.level}关
+                  {formatSource(currentCard)}
                 </span>
                 <span className="text-xs text-duo-gray-300">
                   {currentIdx + 1}/{dueCards.length}
@@ -217,9 +221,7 @@ export default function ReviewClient() {
                   className="rounded-2xl border border-duo-gray-200 bg-white p-4 space-y-3"
                 >
                   <div className="flex items-center gap-2 text-xs text-duo-gray-300">
-                    <span>第{item.chapter}章</span>
-                    <span>·</span>
-                    <span>第{item.level}关</span>
+                    <span>{formatSource(item)}</span>
                   </div>
                   <p className="text-sm font-medium text-duo-gray-500">
                     {item.question.question}

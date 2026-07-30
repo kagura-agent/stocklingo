@@ -28,11 +28,12 @@ export function saveProgress(progress: UserProgress): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 }
 
-function levelKey(chapter: number, level: number): string {
-  return `${chapter}-${level}`;
+function levelKey(market: string, chapter: number, level: number): string {
+  return `${market}-${chapter}-${level}`;
 }
 
 export function completeLevel(
+  market: string,
   chapter: number,
   level: number,
   score: number,
@@ -40,7 +41,7 @@ export function completeLevel(
   xpEarned: number
 ): UserProgress {
   const progress = loadProgress();
-  const key = levelKey(chapter, level);
+  const key = levelKey(market, chapter, level);
 
   const existing = progress.completedLevels[key];
   if (!existing || score > existing.score) {
@@ -73,17 +74,18 @@ export function completeLevel(
   return progress;
 }
 
-export function isLevelCompleted(chapter: number, level: number): boolean {
+export function isLevelCompleted(market: string, chapter: number, level: number): boolean {
   const progress = loadProgress();
-  return !!progress.completedLevels[levelKey(chapter, level)];
+  return !!progress.completedLevels[levelKey(market, chapter, level)];
 }
 
-export function getChapterScore(chapter: number): number {
+export function getChapterScore(market: string, chapter: number): number {
   const progress = loadProgress();
+  const prefix = `${market}-${chapter}-`;
   let totalScore = 0;
   let totalQuestions = 0;
   for (const [key, lp] of Object.entries(progress.completedLevels)) {
-    if (key.startsWith(`${chapter}-`)) {
+    if (key.startsWith(prefix)) {
       totalScore += lp.score;
       totalQuestions += lp.total;
     }
@@ -92,9 +94,10 @@ export function getChapterScore(chapter: number): number {
 }
 
 export function isChapterUnlocked(
+  market: string,
   chapterId: number,
   unlockCondition: { chapter: number; minScore: number } | null
 ): boolean {
   if (!unlockCondition) return true;
-  return getChapterScore(unlockCondition.chapter) >= unlockCondition.minScore;
+  return getChapterScore(market, unlockCondition.chapter) >= unlockCondition.minScore;
 }

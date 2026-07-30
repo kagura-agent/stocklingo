@@ -5,6 +5,7 @@ import type { WrongAnswer } from "./wrong-answers";
 
 export interface SRSCard {
   id: string;
+  market: string;
   chapter: number;
   level: number;
   question: Question;
@@ -84,6 +85,7 @@ export function addToSRS(wrongAnswer: WrongAnswer): void {
 
   const card: SRSCard = {
     id: wrongAnswer.id,
+    market: wrongAnswer.market ?? "a-shares",
     chapter: wrongAnswer.chapter,
     level: wrongAnswer.level,
     question: wrongAnswer.question,

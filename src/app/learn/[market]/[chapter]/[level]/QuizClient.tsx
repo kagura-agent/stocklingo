@@ -17,10 +17,12 @@ type OptState = "default" | "selected" | "correct" | "wrong" | "missed";
 
 export default function QuizClient({
   questions,
+  market,
   chapter,
   level,
 }: {
   questions: Question[];
+  market: string;
   chapter: number;
   level: number;
 }) {
@@ -44,7 +46,7 @@ export default function QuizClient({
         <p className="text-center text-duo-gray-400">
           第 {chapter} 章 第 {level} 关的内容正在制作中，敬请期待！
         </p>
-        <Link href="/learn" className="btn-primary mt-4 inline-block">
+        <Link href={`/learn/${market}`} className="btn-primary mt-4 inline-block">
           返回学习
         </Link>
       </div>
@@ -64,10 +66,10 @@ export default function QuizClient({
       setShowXP(true);
       setStreak((s) => s + 1);
       setTimeout(() => setShowXP(false), 1800);
-      removeWrongAnswer(`${chapter}-${level}-${q.id}`);
+      removeWrongAnswer(`${market}-${chapter}-${level}-${q.id}`);
     } else {
       setStreak(0);
-      saveWrongAnswer(q, chapter, level, idx);
+      saveWrongAnswer(q, market, chapter, level, idx);
     }
   }
 
@@ -75,7 +77,7 @@ export default function QuizClient({
     if (currentIndex + 1 >= questions.length) {
       const finalScore = score;
       const finalXP = xpEarned;
-      completeLevel(chapter, level, finalScore, questions.length, finalXP);
+      completeLevel(market, chapter, level, finalScore, questions.length, finalXP);
       setFinished(true);
     } else {
       setTransitioning(true);
@@ -95,6 +97,7 @@ export default function QuizClient({
           score={score}
           total={questions.length}
           xpEarned={xpEarned}
+          market={market}
           chapter={chapter}
         />
       </div>
@@ -117,7 +120,7 @@ export default function QuizClient({
       <ProgressBar
         current={currentIndex + 1}
         total={questions.length}
-        onClose="/learn"
+        onClose={`/learn/${market}`}
       />
 
       {streak >= 2 && answerState === "unanswered" && (
