@@ -10,6 +10,7 @@ const tabs = [
   { href: "/learn", label: "学习", icon: "📚" },
   { href: "/daily", label: "每日", icon: "📅" },
   { href: "/review", label: "复习", icon: "📝" },
+  { href: "/glossary", label: "术语", icon: "📖" },
   { href: "/profile", label: "我的", icon: "👤" },
 ];
 
