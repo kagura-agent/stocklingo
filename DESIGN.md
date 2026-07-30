@@ -5,7 +5,7 @@
 
 成功标准：Luna 做完一个章节后能用自己的话解释核心概念，而不只是选对答案。
 
-## Roadmap (Self-Driven, 2026-07-29)
+## Roadmap (Self-Driven, 2026-07-30)
 
 ### Phase 1 — Content & Polish (This Week)
 - [x] Ch4: 技术分析入门 (K线/均线/量价)
@@ -20,6 +20,7 @@
 - [x] 分享成绩卡片
 - [x] 港股/美股基础内容
 - [x] PWA 支持（安装到桌面 + 离线访问）
+- [x] 港美股内容扩展至 6 章 30 关 (ETF/财报/风险管理)
 
 ### Phase 3 — Growth (When Ready)
 - [ ] 用户系统 (Supabase Auth)
