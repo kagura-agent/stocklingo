@@ -11,6 +11,7 @@ const tabs = [
   { href: "/daily", label: "每日", icon: "📅" },
   { href: "/review", label: "复习", icon: "📝" },
   { href: "/challenge", label: "挑战", icon: "⚡" },
+  { href: "/scenarios", label: "模拟", icon: "🎮" },
   { href: "/glossary", label: "术语", icon: "📖" },
   { href: "/profile", label: "我的", icon: "👤" },
 ];

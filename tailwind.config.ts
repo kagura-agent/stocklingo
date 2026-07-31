@@ -31,12 +31,17 @@ const config: Config = {
           "50%": { transform: "scale(1.3)" },
           "100%": { transform: "scale(1)", opacity: "1" },
         },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         shake: "shake 0.4s ease-in-out",
         "pulse-correct": "pulse-correct 0.4s ease-in-out",
         "slide-up-fade": "slide-up-fade 0.3s ease-out forwards",
         "streak-pop": "streak-pop 0.4s ease-out forwards",
+        "fade-in": "fade-in 0.3s ease-out forwards",
       },
       colors: {
         duo: {
