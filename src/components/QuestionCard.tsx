@@ -26,10 +26,10 @@ export default function QuestionCard({
           {badge.label}
         </span>
       </div>
-      <div className="card bg-green-50 border-duo-green/30">
-        <p className="text-sm text-duo-gray-400 leading-relaxed">{story}</p>
+      <div className="card bg-green-50 dark:bg-green-900/20 border-duo-green/30">
+        <p className="text-sm text-duo-gray-400 dark:text-slate-300 leading-relaxed">{story}</p>
       </div>
-      <h2 className="text-xl font-bold leading-snug">{question}</h2>
+      <h2 className="text-xl font-bold leading-snug dark:text-slate-100">{question}</h2>
     </div>
   );
 }

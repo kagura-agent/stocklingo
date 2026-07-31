@@ -25,15 +25,15 @@ export default function ChapterCard({
     <div className={`card ${locked ? "opacity-50" : ""} space-y-4`}>
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-bold">{title}</h2>
-          <p className="text-sm text-duo-gray-300">{titleEn}</p>
+          <h2 className="text-lg font-bold dark:text-slate-100">{title}</h2>
+          <p className="text-sm text-duo-gray-300 dark:text-slate-400">{titleEn}</p>
         </div>
         {locked && <span className="text-2xl">🔒</span>}
         {!locked && completedLevels === levels && (
           <span className="text-2xl">⭐</span>
         )}
       </div>
-      <p className="text-sm text-duo-gray-400">{description}</p>
+      <p className="text-sm text-duo-gray-400 dark:text-slate-400">{description}</p>
       {!locked && (
         <div className="flex gap-2 flex-wrap">
           {Array.from({ length: levels }, (_, i) => i + 1).map((level) => {
@@ -47,8 +47,8 @@ export default function ChapterCard({
                   done
                     ? "border-duo-green bg-duo-green text-white"
                     : isBoss
-                      ? "border-duo-orange bg-orange-50 text-duo-orange"
-                      : "border-duo-gray-200 bg-white text-duo-gray-400 hover:border-duo-green hover:text-duo-green"
+                      ? "border-duo-orange bg-orange-50 dark:bg-orange-900/20 text-duo-orange"
+                      : "border-duo-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-duo-gray-400 dark:text-slate-400 hover:border-duo-green hover:text-duo-green"
                 }`}
               >
                 {isBoss ? "👑" : level}

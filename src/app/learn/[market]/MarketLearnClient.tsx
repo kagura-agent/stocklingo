@@ -29,8 +29,8 @@ export default function MarketLearnClient({ market }: { market: string }) {
         <div className="flex items-center gap-3">
           <span className="text-3xl">{meta.icon}</span>
           <div>
-            <h1 className="text-2xl font-black">{meta.name}</h1>
-            <p className="text-sm text-duo-gray-300">
+            <h1 className="text-2xl font-black dark:text-slate-100">{meta.name}</h1>
+            <p className="text-sm text-duo-gray-300 dark:text-slate-400">
               {progress ? `${progress.xp} XP` : "加载中..."}
             </p>
           </div>

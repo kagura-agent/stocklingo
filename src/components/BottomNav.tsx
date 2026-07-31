@@ -23,7 +23,7 @@ export default function BottomNav() {
   }, []);
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-duo-gray-200 bg-white">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-duo-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900">
       <div className="mx-auto flex max-w-lg">
         {tabs.map((tab) => {
           const active =

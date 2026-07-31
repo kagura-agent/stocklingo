@@ -14,7 +14,7 @@ export default function KnowledgeCard({
   const [expanded, setExpanded] = useState(true);
 
   return (
-    <div className="card border-duo-blue bg-blue-50 space-y-2 overflow-hidden">
+    <div className="card border-duo-blue bg-blue-50 dark:bg-blue-900/20 space-y-2 overflow-hidden">
       <button
         onClick={() => setExpanded(!expanded)}
         className="flex w-full items-center justify-between text-left"
@@ -49,9 +49,9 @@ export default function KnowledgeCard({
       </button>
       {expanded && (
         <div className="space-y-2 pt-1">
-          <p className="text-sm text-duo-gray-500 leading-relaxed">{content}</p>
+          <p className="text-sm text-duo-gray-500 dark:text-slate-200 leading-relaxed">{content}</p>
           {funFact && (
-            <div className="flex gap-2 rounded-xl bg-white/60 p-3">
+            <div className="flex gap-2 rounded-xl bg-white/60 dark:bg-slate-800/60 p-3">
               <span className="shrink-0">💡</span>
               <p className="text-sm text-duo-orange font-medium">{funFact}</p>
             </div>
