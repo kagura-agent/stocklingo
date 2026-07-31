@@ -8,6 +8,7 @@ import {
   type WrongAnswer,
 } from "@/lib/wrong-answers";
 import { getDueCards, gradeCard, updateSRSCard, type SRSCard } from "@/lib/srs";
+import { incrementSRSReviewCount } from "@/lib/srs-tracker";
 import OptionButton from "@/components/OptionButton";
 
 type OptState = "default" | "selected" | "correct" | "wrong" | "missed";
@@ -39,6 +40,7 @@ export default function ReviewClient() {
     const quality = idx === currentCard.question.answer ? 4 : 1;
     const updated = gradeCard(currentCard, quality);
     updateSRSCard(updated);
+    incrementSRSReviewCount();
     if (quality >= 3) {
       setLastInterval(updated.interval);
     }

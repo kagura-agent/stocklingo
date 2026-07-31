@@ -1,6 +1,7 @@
 "use client";
 
 import type { UserProgress } from "./types";
+import { recordActivity } from "./activity";
 
 const STORAGE_KEY = "stocklingo-progress";
 
@@ -38,10 +39,21 @@ export function completeLevel(
   level: number,
   score: number,
   total: number,
-  xpEarned: number
+  xpEarned: number,
+  durationSeconds: number = 0
 ): UserProgress {
   const progress = loadProgress();
   const key = levelKey(market, chapter, level);
+
+  recordActivity({
+    timestamp: new Date().toISOString(),
+    market,
+    chapter,
+    level,
+    score,
+    total,
+    durationSeconds,
+  });
 
   const existing = progress.completedLevels[key];
   if (!existing || score > existing.score) {
