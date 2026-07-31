@@ -35,11 +35,11 @@ export default function LevelSummary({
       >
         {pct}%
       </div>
-      <p className="text-lg text-duo-gray-400">
+      <p className="text-lg text-duo-gray-400 dark:text-slate-400">
         {score}/{total} 题正确
       </p>
       <div className="text-2xl font-bold text-duo-orange">+{xpEarned} XP</div>
-      <p className="text-duo-gray-300">
+      <p className="text-duo-gray-300 dark:text-slate-400">
         {passed ? "太棒了！继续前进！" : "再接再厉，重新挑战！"}
       </p>
       <div className="mt-4 flex gap-3">

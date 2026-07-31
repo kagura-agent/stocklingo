@@ -40,10 +40,10 @@ export default function QuizClient({
     return (
       <div className="flex flex-col items-center gap-6 px-6 pt-20">
         <div className="text-6xl">🚧</div>
-        <h2 className="text-xl font-bold text-duo-gray-500">
+        <h2 className="text-xl font-bold text-duo-gray-500 dark:text-slate-100">
           内容开发中
         </h2>
-        <p className="text-center text-duo-gray-400">
+        <p className="text-center text-duo-gray-400 dark:text-slate-400">
           第 {chapter} 章 第 {level} 关的内容正在制作中，敬请期待！
         </p>
         <Link href={`/learn/${market}`} className="btn-primary mt-4 inline-block">
@@ -125,7 +125,7 @@ export default function QuizClient({
 
       {streak >= 2 && answerState === "unanswered" && (
         <div className="flex justify-center animate-streak-pop">
-          <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-bold text-duo-orange">
+          <span className="rounded-full bg-orange-100 dark:bg-orange-900/30 px-3 py-1 text-sm font-bold text-duo-orange">
             🔥x{streak}
           </span>
         </div>
@@ -156,8 +156,8 @@ export default function QuizClient({
           <div
             className={`rounded-2xl p-4 ${
               answerState === "correct"
-                ? "bg-green-50 text-duo-green-dark"
-                : "bg-red-50 text-duo-red"
+                ? "bg-green-50 dark:bg-green-900/30 text-duo-green-dark dark:text-green-300"
+                : "bg-red-50 dark:bg-red-900/30 text-duo-red dark:text-red-300"
             }`}
           >
             <p className="font-bold text-lg">

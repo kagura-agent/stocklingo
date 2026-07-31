@@ -104,7 +104,7 @@ export default function ReviewClient() {
           className={`flex-1 py-2 rounded-xl text-sm font-bold ${
             tab === "review"
               ? "bg-duo-green text-white"
-              : "bg-duo-gray-100 text-duo-gray-300"
+              : "bg-duo-gray-100 dark:bg-slate-800 text-duo-gray-300 dark:text-slate-400"
           }`}
         >
           待复习{dueCards.length > 0 && `（${dueCards.length}）`}
@@ -127,33 +127,33 @@ export default function ReviewClient() {
           {dueCards.length === 0 ? (
             <div className="flex flex-col items-center gap-4 pt-16">
               <div className="text-6xl">✅</div>
-              <h2 className="text-xl font-bold text-duo-gray-500">
+              <h2 className="text-xl font-bold text-duo-gray-500 dark:text-slate-100">
                 没有待复习的内容
               </h2>
-              <p className="text-sm text-duo-gray-300">明天再来看看吧！</p>
+              <p className="text-sm text-duo-gray-300 dark:text-slate-400">明天再来看看吧！</p>
             </div>
           ) : currentIdx >= dueCards.length ? (
             <div className="flex flex-col items-center gap-4 pt-16">
               <div className="text-6xl">🎉</div>
-              <h2 className="text-xl font-bold text-duo-gray-500">
+              <h2 className="text-xl font-bold text-duo-gray-500 dark:text-slate-100">
                 今日复习完成！
               </h2>
-              <p className="text-sm text-duo-gray-300">
+              <p className="text-sm text-duo-gray-300 dark:text-slate-400">
                 你已完成 {dueCards.length} 道复习题
               </p>
             </div>
           ) : (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs text-duo-gray-300">
+                <span className="text-xs text-duo-gray-300 dark:text-slate-400">
                   {formatSource(currentCard)}
                 </span>
-                <span className="text-xs text-duo-gray-300">
+                <span className="text-xs text-duo-gray-300 dark:text-slate-400">
                   {currentIdx + 1}/{dueCards.length}
                 </span>
               </div>
 
-              <p className="text-lg font-bold text-duo-gray-500">
+              <p className="text-lg font-bold text-duo-gray-500 dark:text-slate-100">
                 {currentCard.question.question}
               </p>
 
@@ -172,7 +172,7 @@ export default function ReviewClient() {
               {answered && (
                 <div className="space-y-3 pt-2">
                   {selected !== currentCard.question.answer && (
-                    <p className="text-xs text-duo-gray-300">
+                    <p className="text-xs text-duo-gray-300 dark:text-slate-400">
                       {currentCard.question.explanation}
                     </p>
                   )}
@@ -200,7 +200,7 @@ export default function ReviewClient() {
           {answers.length === 0 ? (
             <div className="flex flex-col items-center gap-4 pt-16">
               <div className="text-6xl">🎉</div>
-              <h2 className="text-xl font-bold text-duo-gray-500">
+              <h2 className="text-xl font-bold text-duo-gray-500 dark:text-slate-100">
                 没有错题！继续保持
               </h2>
             </div>
@@ -218,15 +218,15 @@ export default function ReviewClient() {
               {answers.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-duo-gray-200 bg-white p-4 space-y-3"
+                  className="rounded-2xl border border-duo-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 space-y-3"
                 >
-                  <div className="flex items-center gap-2 text-xs text-duo-gray-300">
+                  <div className="flex items-center gap-2 text-xs text-duo-gray-300 dark:text-slate-400">
                     <span>{formatSource(item)}</span>
                   </div>
-                  <p className="text-sm font-medium text-duo-gray-500">
+                  <p className="text-sm font-medium text-duo-gray-500 dark:text-slate-100">
                     {item.question.question}
                   </p>
-                  <div className="text-xs text-duo-gray-300 space-y-1">
+                  <div className="text-xs text-duo-gray-300 dark:text-slate-400 space-y-1">
                     <p>
                       你的答案：
                       <span className="text-duo-red">
@@ -254,7 +254,7 @@ export default function ReviewClient() {
                       ))}
                       {wrongAnswered &&
                         wrongSelected !== item.question.answer && (
-                          <p className="text-xs text-duo-gray-300 pt-1">
+                          <p className="text-xs text-duo-gray-300 dark:text-slate-400 pt-1">
                             {item.question.explanation}
                           </p>
                         )}

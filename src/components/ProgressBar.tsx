@@ -17,7 +17,7 @@ export default function ProgressBar({
       {onClose && (
         <Link
           href={onClose}
-          className="flex h-8 w-8 items-center justify-center rounded-full text-duo-gray-300 hover:bg-duo-gray-200 hover:text-duo-gray-500 transition-colors"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-duo-gray-300 hover:bg-duo-gray-200 dark:hover:bg-slate-700 hover:text-duo-gray-500 dark:hover:text-slate-200 transition-colors"
           aria-label="Exit quiz"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -31,14 +31,14 @@ export default function ProgressBar({
         </Link>
       )}
       <div className="flex-1">
-        <div className="h-4 w-full rounded-full bg-duo-gray-200 overflow-hidden">
+        <div className="h-4 w-full rounded-full bg-duo-gray-200 dark:bg-slate-700 overflow-hidden">
           <div
             className="h-4 rounded-full bg-duo-green transition-all duration-500 ease-out"
             style={{ width: `${pct}%` }}
           />
         </div>
       </div>
-      <span className="text-sm font-bold text-duo-gray-300 tabular-nums min-w-[3rem] text-right">
+      <span className="text-sm font-bold text-duo-gray-300 dark:text-slate-400 tabular-nums min-w-[3rem] text-right">
         {current}/{total}
       </span>
     </div>
