@@ -3,6 +3,8 @@ import "./globals.css";
 import InstallPrompt from "@/components/InstallPrompt";
 import ThemeProvider from "@/components/ThemeProvider";
 import AuthProvider from "@/components/AuthProvider";
+import SyncProvider from "@/components/SyncProvider";
+import SyncStatus from "@/components/SyncStatus";
 import UserMenu from "@/components/UserMenu";
 
 export const metadata: Metadata = {
@@ -41,11 +43,14 @@ export default function RootLayout({
       <body className="min-h-screen bg-duo-gray-100 dark:bg-slate-900 transition-colors">
         <ThemeProvider>
           <AuthProvider>
-            <header className="sticky top-0 z-30 mx-auto flex max-w-lg items-center justify-end px-4 py-2">
-              <UserMenu />
-            </header>
-            <main className="mx-auto max-w-lg pb-20">{children}</main>
-            <InstallPrompt />
+            <SyncProvider>
+              <header className="sticky top-0 z-30 mx-auto flex max-w-lg items-center justify-end px-4 py-2">
+                <SyncStatus />
+                <UserMenu />
+              </header>
+              <main className="mx-auto max-w-lg pb-20">{children}</main>
+              <InstallPrompt />
+            </SyncProvider>
           </AuthProvider>
         </ThemeProvider>
         <script

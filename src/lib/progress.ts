@@ -27,6 +27,19 @@ export function loadProgress(): UserProgress {
 export function saveProgress(progress: UserProgress): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  syncProgressIfLoggedIn(progress);
+}
+
+function syncProgressIfLoggedIn(progress: UserProgress): void {
+  import("@/lib/supabase/client").then(({ createClient }) => {
+    import("@/lib/sync").then(({ isSupabaseEnabled, syncAfterWrite }) => {
+      if (!isSupabaseEnabled()) return;
+      const supabase = createClient();
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user) syncAfterWrite(supabase, user.id, "progress", progress);
+      });
+    });
+  });
 }
 
 function levelKey(market: string, chapter: number, level: number): string {

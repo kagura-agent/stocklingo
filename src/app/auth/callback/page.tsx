@@ -3,14 +3,16 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { downloadAndMerge } from "@/lib/sync";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.onAuthStateChange((event) => {
-      if (event === "SIGNED_IN") {
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "SIGNED_IN" && session?.user) {
+        await downloadAndMerge(supabase, session.user.id);
         router.push("/");
       }
     });

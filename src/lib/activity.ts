@@ -32,6 +32,19 @@ export function recordActivity(record: ActivityRecord): void {
   const activities = getActivities();
   activities.push(record);
   saveActivities(activities);
+  syncActivityIfLoggedIn(activities);
+}
+
+function syncActivityIfLoggedIn(activities: ActivityRecord[]): void {
+  import("@/lib/supabase/client").then(({ createClient }) => {
+    import("@/lib/sync").then(({ isSupabaseEnabled, syncAfterWrite }) => {
+      if (!isSupabaseEnabled()) return;
+      const supabase = createClient();
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user) syncAfterWrite(supabase, user.id, "activity", activities);
+      });
+    });
+  });
 }
 
 export function getActivityByDate(date: string): ActivityRecord[] {
