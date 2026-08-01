@@ -8,10 +8,12 @@ import { getMarkets } from "@/lib/content";
 import { getActivities } from "@/lib/activity";
 import { getSRSReviewCount } from "@/lib/srs-tracker";
 import { exportData, importData } from "@/lib/backup";
+import Link from "next/link";
 import BottomNav from "@/components/BottomNav";
 import ThemeToggle from "@/components/ThemeToggle";
 import ActivityHeatmap from "@/components/ActivityHeatmap";
 import AccuracyChart from "@/components/AccuracyChart";
+import { isSupabaseEnabled } from "@/lib/sync";
 
 interface Achievement {
   emoji: string;
@@ -194,6 +196,19 @@ export default function ProfilePage() {
             })}
           </div>
         </div>
+
+        {isSupabaseEnabled() && (
+          <Link
+            href="/leaderboard"
+            className="card flex items-center justify-between px-4 py-4 transition-shadow hover:shadow-md"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🏆</span>
+              <span className="font-bold dark:text-slate-100">查看排行榜</span>
+            </div>
+            <span className="text-duo-gray-300 dark:text-slate-500">→</span>
+          </Link>
+        )}
 
         <div className="card space-y-3">
           <h2 className="font-bold dark:text-slate-100">数据管理</h2>
