@@ -27,7 +27,7 @@
 ### Phase 3 — Growth (When Ready)
 - [x] 用户系统 (Supabase Auth) — feature-flagged, 需配置 Supabase 项目激活
 - [x] 数据同步（localStorage → Supabase，登录后自动迁移）
-- [ ] Leaderboard
+- [x] Leaderboard
 
 ### Principles
 - 内容质量 > 功能数量
