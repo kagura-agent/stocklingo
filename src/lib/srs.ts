@@ -33,6 +33,19 @@ function getCards(): SRSCard[] {
 function saveCards(cards: SRSCard[]): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+  syncSRSIfLoggedIn(cards);
+}
+
+function syncSRSIfLoggedIn(cards: SRSCard[]): void {
+  import("@/lib/supabase/client").then(({ createClient }) => {
+    import("@/lib/sync").then(({ isSupabaseEnabled, syncAfterWrite }) => {
+      if (!isSupabaseEnabled()) return;
+      const supabase = createClient();
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user) syncAfterWrite(supabase, user.id, "srs", cards);
+      });
+    });
+  });
 }
 
 export function gradeCard(card: SRSCard, quality: number): SRSCard {

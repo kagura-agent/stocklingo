@@ -53,6 +53,19 @@ export function saveWrongAnswer(
   }
   localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
   addToSRS(entry);
+  syncWrongAnswersIfLoggedIn(answers);
+}
+
+function syncWrongAnswersIfLoggedIn(answers: WrongAnswer[]): void {
+  import("@/lib/supabase/client").then(({ createClient }) => {
+    import("@/lib/sync").then(({ isSupabaseEnabled, syncAfterWrite }) => {
+      if (!isSupabaseEnabled()) return;
+      const supabase = createClient();
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user) syncAfterWrite(supabase, user.id, "wrong_answers", answers);
+      });
+    });
+  });
 }
 
 export function removeWrongAnswer(id: string): void {
