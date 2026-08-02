@@ -1,6 +1,9 @@
 import chaseHighData from "../../content/scenarios/chase-high.json";
 import stopLossData from "../../content/scenarios/stop-loss.json";
 import bullBearData from "../../content/scenarios/bull-bear.json";
+import diversificationData from "../../content/scenarios/diversification.json";
+import earningsPlayData from "../../content/scenarios/earnings-play.json";
+import averagingDownData from "../../content/scenarios/averaging-down.json";
 
 export interface ScenarioOption {
   text: string;
@@ -39,6 +42,9 @@ const scenarios: Scenario[] = [
   chaseHighData as Scenario,
   stopLossData as Scenario,
   bullBearData as Scenario,
+  diversificationData as Scenario,
+  earningsPlayData as Scenario,
+  averagingDownData as Scenario,
 ];
 
 export function getAllScenarios(): Scenario[] {
