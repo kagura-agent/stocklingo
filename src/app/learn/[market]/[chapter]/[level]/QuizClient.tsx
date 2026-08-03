@@ -3,14 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Question } from "@/lib/types";
-import { completeLevel } from "@/lib/progress";
+import { completeLevel, loadProgress } from "@/lib/progress";
 import { saveWrongAnswer, removeWrongAnswer } from "@/lib/wrong-answers";
+import { getMarkets } from "@/lib/content";
+import { getActivities } from "@/lib/activity";
+import { getSRSReviewCount } from "@/lib/srs-tracker";
+import { getDailyState } from "@/lib/daily";
+import { getCompletedScenarioIds } from "@/lib/scenarios";
+import { useAchievementCheck, type AchievementContext } from "@/hooks/useAchievementCheck";
 import ProgressBar from "@/components/ProgressBar";
 import QuestionCard from "@/components/QuestionCard";
 import OptionButton from "@/components/OptionButton";
 import KnowledgeCard from "@/components/KnowledgeCard";
 import XPAnimation from "@/components/XPAnimation";
 import LevelSummary from "@/components/LevelSummary";
+import AchievementToast from "@/components/AchievementToast";
 
 type AnswerState = "unanswered" | "correct" | "wrong";
 type OptState = "default" | "selected" | "correct" | "wrong" | "missed";
@@ -35,6 +42,9 @@ export default function QuizClient({
   const [finished, setFinished] = useState(false);
   const [streak, setStreak] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+  const [achievementCtx, setAchievementCtx] = useState<AchievementContext | null>(null);
+
+  const newAchievements = useAchievementCheck(achievementCtx);
 
   if (questions.length === 0 && !finished) {
     return (
@@ -78,6 +88,19 @@ export default function QuizClient({
       const finalScore = score;
       const finalXP = xpEarned;
       completeLevel(market, chapter, level, finalScore, questions.length, finalXP);
+      const progress = loadProgress();
+      const completedCount = Object.keys(progress.completedLevels).length;
+      const totalLevels = getMarkets().reduce((s, m) => s + m.chapters.reduce((s2, ch) => s2 + ch.levels, 0), 0);
+      setAchievementCtx({
+        completedCount,
+        totalLevels,
+        streak: progress.streak.count,
+        dailyStreak: getDailyState().streak,
+        scenarioCount: getCompletedScenarioIds().length,
+        progress,
+        activities: getActivities(),
+        srsReviewCount: getSRSReviewCount(),
+      });
       setFinished(true);
     } else {
       setTransitioning(true);
@@ -100,6 +123,7 @@ export default function QuizClient({
           market={market}
           chapter={chapter}
         />
+        <AchievementToast achievements={newAchievements} />
       </div>
     );
   }

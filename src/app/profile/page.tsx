@@ -7,7 +7,10 @@ import { generateProfileCard, shareCanvas } from "@/lib/shareCard";
 import { getMarkets } from "@/lib/content";
 import { getActivities } from "@/lib/activity";
 import { getSRSReviewCount } from "@/lib/srs-tracker";
+import { getDailyState } from "@/lib/daily";
+import { getCompletedScenarioIds } from "@/lib/scenarios";
 import { exportData, importData } from "@/lib/backup";
+import { achievements, ACHIEVEMENT_CATEGORIES, type AchievementContext } from "@/lib/achievements";
 import Link from "next/link";
 import BottomNav from "@/components/BottomNav";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -15,71 +18,11 @@ import ActivityHeatmap from "@/components/ActivityHeatmap";
 import AccuracyChart from "@/components/AccuracyChart";
 import { isSupabaseEnabled } from "@/lib/sync";
 
-interface Achievement {
-  emoji: string;
-  lockedEmoji: string;
-  label: string;
-  check: (ctx: AchievementContext) => boolean;
-}
-
-interface AchievementContext {
-  completedCount: number;
-  streak: number;
-  progress: UserProgress;
-  activities: { score: number; total: number }[];
-  srsReviewCount: number;
-}
-
-const achievements: Achievement[] = [
-  { emoji: "🌟", lockedEmoji: "🔒", label: "初学者", check: (c) => c.completedCount >= 1 },
-  { emoji: "📈", lockedEmoji: "🔒", label: "行情通", check: (c) => c.completedCount >= 5 },
-  { emoji: "🏆", lockedEmoji: "🔒", label: "老股民", check: (c) => c.completedCount >= 10 },
-  { emoji: "👑", lockedEmoji: "🔒", label: "股神", check: (c) => c.completedCount >= 15 },
-  { emoji: "🔥", lockedEmoji: "🔒", label: "三天打鱼", check: (c) => c.streak >= 3 },
-  { emoji: "⚡", lockedEmoji: "🔒", label: "周周不断", check: (c) => c.streak >= 7 },
-  { emoji: "💎", lockedEmoji: "🔒", label: "月度坚持", check: (c) => c.streak >= 30 },
-  {
-    emoji: "💯", lockedEmoji: "🔒", label: "满分选手",
-    check: (c) => Object.values(c.progress.completedLevels).some((l) => l.score === l.total),
-  },
-  {
-    emoji: "🎯", lockedEmoji: "🔒", label: "精准射手",
-    check: (c) => {
-      const acts = c.activities;
-      if (acts.length < 5) return false;
-      for (let i = acts.length - 5; i < acts.length; i++) {
-        if (acts[i].total === 0 || acts[i].score / acts[i].total < 0.8) return false;
-      }
-      return true;
-    },
-  },
-  {
-    emoji: "🌏", lockedEmoji: "🔒", label: "全球视野",
-    check: (c) => {
-      const keys = Object.keys(c.progress.completedLevels);
-      const hasAShares = keys.some((k) => k.startsWith("a-shares-"));
-      const hasHK = keys.some((k) => k.startsWith("hk-us-"));
-      if (!hasAShares || !hasHK) return false;
-      const aChapters = new Set(keys.filter((k) => k.startsWith("a-shares-")).map((k) => k.split("-")[2]));
-      const hkChapters = new Set(keys.filter((k) => k.startsWith("hk-us-")).map((k) => k.split("-")[2]));
-      return aChapters.size >= 1 && hkChapters.size >= 1;
-    },
-  },
-  {
-    emoji: "📚", lockedEmoji: "🔒", label: "学霸",
-    check: (c) => {
-      const markets = getMarkets();
-      return markets.some((m) => {
-        const totalLevels = m.chapters.reduce((s, ch) => s + ch.levels, 0);
-        const completedInMarket = Object.keys(c.progress.completedLevels).filter(
-          (k) => k.startsWith(`${m.market}-`)
-        ).length;
-        return completedInMarket >= totalLevels && totalLevels > 0;
-      });
-    },
-  },
-  { emoji: "🧠", lockedEmoji: "🔒", label: "温故知新", check: (c) => c.srsReviewCount >= 10 },
-];
+const TIER_BG: Record<string, string> = {
+  bronze: "bg-amber-50 dark:bg-amber-900/20",
+  silver: "bg-gray-50 dark:bg-gray-700/30",
+  gold: "bg-yellow-50 dark:bg-yellow-900/20",
+};
 
 export default function ProfilePage() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
@@ -104,9 +47,15 @@ export default function ProfilePage() {
     0
   );
 
+  const dailyState = getDailyState();
+  const scenarioCount = getCompletedScenarioIds().length;
+
   const achievementCtx: AchievementContext = {
     completedCount,
+    totalLevels,
     streak: progress.streak.count,
+    dailyStreak: dailyState.streak,
+    scenarioCount,
     progress,
     activities: getActivities(),
     srsReviewCount: getSRSReviewCount(),
@@ -182,19 +131,31 @@ export default function ProfilePage() {
         <ActivityHeatmap />
         <AccuracyChart />
 
-        <div className="card space-y-3">
+        <div className="card space-y-4">
           <h2 className="font-bold dark:text-slate-100">成就</h2>
-          <div className="grid grid-cols-4 gap-3 text-center">
-            {achievements.map((a) => {
-              const unlocked = a.check(achievementCtx);
-              return (
-                <div key={a.label} className="flex flex-col items-center gap-1">
-                  <span className="text-2xl">{unlocked ? a.emoji : a.lockedEmoji}</span>
-                  <span className="text-xs text-duo-gray-300 dark:text-slate-400">{a.label}</span>
+          {ACHIEVEMENT_CATEGORIES.map((cat) => {
+            const catAchievements = achievements.filter((a) => a.category === cat.key);
+            return (
+              <div key={cat.key} className="space-y-2">
+                <h3 className="text-sm font-semibold text-duo-gray-400 dark:text-slate-400">{cat.label}</h3>
+                <div className="grid grid-cols-4 gap-3 text-center">
+                  {catAchievements.map((a) => {
+                    const unlocked = a.check(achievementCtx);
+                    return (
+                      <div
+                        key={a.id}
+                        className={`flex flex-col items-center gap-1 rounded-xl p-2 ${unlocked ? TIER_BG[a.tier] : ""}`}
+                        title={a.description}
+                      >
+                        <span className="text-2xl">{unlocked ? a.emoji : a.lockedEmoji}</span>
+                        <span className="text-xs text-duo-gray-300 dark:text-slate-400">{a.label}</span>
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
 
         {isSupabaseEnabled() && (

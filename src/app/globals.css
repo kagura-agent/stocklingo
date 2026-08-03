@@ -51,3 +51,18 @@
 .xp-float {
   animation: xp-float 1.8s ease-out forwards;
 }
+
+@keyframes achievement-toast-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.achievement-toast-enter {
+  animation: achievement-toast-enter 0.4s ease-out forwards;
+}
