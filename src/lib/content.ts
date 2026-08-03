@@ -16,7 +16,13 @@ import hkUsChapter5 from "../../content/hk-us/chapter-5.json";
 import hkUsChapter6 from "../../content/hk-us/chapter-6.json";
 import hkUsMetadata from "../../content/hk-us/metadata.json";
 
-type MarketId = "a-shares" | "hk-us";
+import derivativesChapter1 from "../../content/derivatives/chapter-1.json";
+import derivativesChapter2 from "../../content/derivatives/chapter-2.json";
+import derivativesChapter3 from "../../content/derivatives/chapter-3.json";
+import derivativesChapter4 from "../../content/derivatives/chapter-4.json";
+import derivativesMetadata from "../../content/derivatives/metadata.json";
+
+type MarketId = "a-shares" | "hk-us" | "derivatives";
 
 const markets: Record<MarketId, { metadata: MarketMeta; chapters: Record<number, Question[]> }> = {
   "a-shares": {
@@ -39,6 +45,15 @@ const markets: Record<MarketId, { metadata: MarketMeta; chapters: Record<number,
       4: hkUsChapter4 as Question[],
       5: hkUsChapter5 as Question[],
       6: hkUsChapter6 as Question[],
+    },
+  },
+  "derivatives": {
+    metadata: derivativesMetadata as MarketMeta,
+    chapters: {
+      1: derivativesChapter1 as Question[],
+      2: derivativesChapter2 as Question[],
+      3: derivativesChapter3 as Question[],
+      4: derivativesChapter4 as Question[],
     },
   },
 };

@@ -1,0 +1,402 @@
+[
+  {
+    "id": "derivatives-3-1-01",
+    "chapter": 3,
+    "level": 1,
+    "order": 1,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "小王强烈看好某科技股未来一个月会大涨，但手上资金有限。朋友建议他：'与其买股票，不如买Call，用更少的钱博更大的涨幅。'",
+    "question": "买入看涨期权（Long Call）适合什么样的市场预期？",
+    "options": ["看跌", "看涨", "看平（不涨不跌）", "看波动率下降"],
+    "answer": 1,
+    "explanation": "Long Call=看涨策略。标的涨得越多，Call赚得越多。最大亏损=权利金（标的不涨就让它过期）。用小成本博大收益，但代价是时间价值每天在流失。",
+    "knowledgeCard": {
+      "title": "Long Call——杠杆做多",
+      "content": "最大亏损：权利金。最大盈利：理论无限。盈亏平衡：行权价+权利金。优点：有限风险、高杠杆。缺点：时间衰减是敌人，需要标的涨足够多才能覆盖权利金成本。",
+      "funFact": "2020年特斯拉股价一年涨了7倍，如果在年初买入长期看涨期权（LEAPS），杠杆效应下收益率可以超过50倍——当然这是事后诸葛亮。"
+    },
+    "xp": 10,
+    "tags": ["Long Call", "看涨策略"]
+  },
+  {
+    "id": "derivatives-3-1-02",
+    "chapter": 3,
+    "level": 1,
+    "order": 2,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "小美判断市场即将下跌，但她没有持仓不能卖空股票。她学到可以通过买入看跌期权来从下跌中获利。",
+    "question": "买入看跌期权（Long Put）的最大亏损是多少？",
+    "options": ["无限", "标的跌到0时的损失", "权利金", "行权价"],
+    "answer": 2,
+    "explanation": "Long Put买方最多亏掉全部权利金（标的不跌或涨了，期权过期作废）。这就是期权买方的优势——风险是预知的、有限的。不像做空期货那样亏损可能无限。",
+    "knowledgeCard": {
+      "title": "Long Put——有限风险做空",
+      "content": "最大亏损：权利金。最大盈利：行权价 - 权利金（标的跌到0时）。相比融券做空，Long Put不需要借券，没有追保风险，亏损有上限。",
+      "funFact": "著名电影《大空头》中的主角Michael Burry就是通过买入CDS（类似买入看跌期权）做空次贷市场，最终赚了约7.5亿美元。"
+    },
+    "xp": 10,
+    "tags": ["Long Put", "做空"]
+  },
+  {
+    "id": "derivatives-3-1-03",
+    "chapter": 3,
+    "level": 1,
+    "order": 3,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "老李持有5万份50ETF（价值约15万元），同时卖出5份行权价3.20的看涨期权，收了3000元权利金。他认为短期内50ETF不会涨到3.20以上。",
+    "question": "老李的'持有ETF+卖出Call'策略（备兑开仓）在什么情况下效果最好？",
+    "options": ["标的暴涨", "标的温和上涨或横盘", "标的暴跌", "标的波动率急剧上升"],
+    "answer": 1,
+    "explanation": "备兑开仓在标的温和上涨或横盘时最优：卖出的Call不会被行权（保留现货），同时赚了权利金增强收益。暴涨时涨幅被行权价封顶，暴跌时权利金只能小幅缓冲下跌。",
+    "knowledgeCard": {
+      "title": "Covered Call最佳场景",
+      "content": "理想情况：标的涨到行权价附近但不超过。你既享受了上涨，又收了权利金。本质上你在出售标的的上行空间换取当下收入——像房东出租楼上的空间。",
+      "funFact": "美国有专门跟踪Covered Call策略的指数——CBOE BuyWrite Index（BXM），历史回测显示它的波动比标普500小，但长期收益接近。"
+    },
+    "xp": 10,
+    "tags": ["Covered Call", "温和看多"]
+  },
+  {
+    "id": "derivatives-3-1-04",
+    "chapter": 3,
+    "level": 1,
+    "order": 4,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "小张持有价值10万元的股票，特别担心财报公布后暴跌。但他又不想卖掉（看好长期）。理财顾问建议他'买个看跌期权保护一下'。",
+    "question": "持有股票+买入看跌期权的策略叫什么？",
+    "options": ["备兑开仓", "裸卖Put", "保护性看跌（Protective Put）", "牛市价差"],
+    "answer": 2,
+    "explanation": "保护性Put = 持股 + 买Put。就像给资产买保险：付一笔权利金（保费），如果股票暴跌，Put的盈利弥补股票损失。代价是权利金支出削弱了上涨收益。",
+    "knowledgeCard": {
+      "title": "Protective Put = 投资组合保险",
+      "content": "最大亏损 = 行权价到当前价的差距 + 权利金。无论跌多惨，你都能以行权价卖出。本质上是花钱买了一个'地板价'。",
+      "funFact": "1987年黑色星期一（道指一天暴跌22%）后，组合保险策略（Portfolio Insurance）大火。但讽刺的是，当时的动态对冲程序化卖出反而加剧了下跌——保险机制本身成了风险来源。"
+    },
+    "xp": 10,
+    "tags": ["Protective Put", "组合保险"]
+  },
+  {
+    "id": "derivatives-3-2-01",
+    "chapter": 3,
+    "level": 2,
+    "order": 1,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "小李觉得某只股票不会跌破20元，同时也想赚点额外收入。他的策略是：卖出行权价20的Put，收取权利金。如果没跌到20就白赚权利金。",
+    "question": "卖出看跌期权（Short Put）本质上等于什么？",
+    "options": ["看大跌", "愿意以行权价接盘标的，同时收取权利金作为等待报酬", "和Long Call一样", "完全无风险"],
+    "answer": 1,
+    "explanation": "Short Put = 你承诺'如果跌到行权价以下，我愿意以行权价买入标的'。如果不跌→收权利金白赚。如果跌了→你被迫以行权价买入（但好处是你本来就想买，还赚了权利金折扣）。",
+    "knowledgeCard": {
+      "title": "Short Put——现金担保接盘",
+      "content": "适合看好某股票但觉得当前价偏高的投资者。卖Put = 设置'我愿意接盘的价格' + 收钱等待。最大风险：标的跌到0你也要按行权价买。",
+      "funFact": "巴菲特公开说过他喜欢卖Put：'给我想要买入的优质公司设一个好价格，如果跌到了我乐意买入，如果没跌我赚了权利金——双赢。'"
+    },
+    "xp": 10,
+    "tags": ["Short Put", "接盘策略"]
+  },
+  {
+    "id": "derivatives-3-2-02",
+    "chapter": 3,
+    "level": 2,
+    "order": 2,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "期权老师问：'Long Call最多亏权利金，那裸卖Call（没有现货对冲）最大亏损是多少？'全班都沉默了。",
+    "question": "裸卖看涨期权（Naked Short Call）的最大潜在亏损是？",
+    "options": ["权利金", "行权价", "标的价格", "理论上无限"],
+    "answer": 3,
+    "explanation": "裸卖Call=承诺以行权价卖出你没有的标的。如果标的暴涨到天价，你必须在市场上以天价买入再以行权价卖出，差价无上限。这是期权交易中风险最大的单一策略。",
+    "knowledgeCard": {
+      "title": "裸卖Call——最危险的操作",
+      "content": "盈利有限（最多赚权利金），亏损无限（标的理论上可以无限上涨）。需要大量保证金，适当性要求最高。散户被强烈建议不要使用此策略。",
+      "funFact": "2021年GameStop逼空事件中，有人裸卖了GME的Call。当GME从$20飙升到$480时，卖方亏损超过本金数十倍。有Redditor晒出了单日亏损数百万美元的账户截图。"
+    },
+    "xp": 10,
+    "tags": ["Naked Call", "无限亏损"]
+  },
+  {
+    "id": "derivatives-3-2-03",
+    "chapter": 3,
+    "level": 2,
+    "order": 3,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "小周想用有限的资金看涨50ETF，但觉得买Call太贵。他的策略是：买入行权价较低的Call，同时卖出行权价较高的Call，降低成本。",
+    "question": "买低行权价Call + 卖高行权价Call的策略叫什么？",
+    "options": ["熊市价差", "牛市看涨价差（Bull Call Spread）", "跨式组合", "蝶式价差"],
+    "answer": 1,
+    "explanation": "牛市看涨价差（Bull Call Spread）= 买低K的Call + 卖高K的Call。卖出高K的Call收权利金来抵消买入成本，降低了建仓费用。代价是盈利被封顶在两个行权价之间。",
+    "knowledgeCard": {
+      "title": "Bull Call Spread——低成本看涨",
+      "content": "最大盈利 = 高K - 低K - 净权利金。最大亏损 = 净权利金支出。盈亏平衡 = 低K + 净权利金。用更低成本换取有限利润，适合温和看涨。",
+      "funFact": "价差策略（Spread）是机构最常用的期权策略之一。因为风险可控、保证金要求低，很多交易所对价差给予保证金优惠。"
+    },
+    "xp": 10,
+    "tags": ["Bull Spread", "价差策略"]
+  },
+  {
+    "id": "derivatives-3-2-04",
+    "chapter": 3,
+    "level": 2,
+    "order": 4,
+    "type": "multiple_choice",
+    "difficulty": "easy",
+    "story": "对比四种基本期权策略，投资者小赵画了一张表格，想搞清楚每种策略的最大盈利和最大亏损。",
+    "question": "以下哪个策略的盈亏特征描述是正确的？",
+    "options": ["Long Call：最大亏损无限，最大盈利有限", "Long Put：最大亏损=权利金，最大盈利=行权价-权利金", "Short Call：最大亏损=权利金", "Short Put：最大盈利无限"],
+    "answer": 1,
+    "explanation": "Long Put：最大亏损=权利金（标的涨了就放弃），最大盈利=行权价-权利金（标的跌到0时盈利最大，因为你能以行权价卖出价值为0的东西）。这是唯一完全正确的描述。",
+    "knowledgeCard": {
+      "title": "四种基本策略对比",
+      "content": "Long Call：有限亏损，无限盈利。Long Put：有限亏损，有限盈利（最多跌到0）。Short Call：有限盈利，无限亏损。Short Put：有限盈利，有限亏损（最多跌到0要接盘）。",
+      "funFact": "华尔街有句话：'期权买方付钱做梦（有限损失等爆发），期权卖方收钱失眠（有限收益怕黑天鹅）。'你选哪边？"
+    },
+    "xp": 10,
+    "tags": ["四种策略", "盈亏对比"]
+  },
+  {
+    "id": "derivatives-3-3-01",
+    "chapter": 3,
+    "level": 3,
+    "order": 1,
+    "type": "multiple_choice",
+    "difficulty": "medium",
+    "story": "小王买了1张行权价3.00的Call，付权利金0.10元。同时卖了1张行权价3.20的Call，收权利金0.03元。净支出0.07元。他想算最大盈利。",
+    "question": "Bull Call Spread：买K=3.00的Call（付0.10），卖K=3.20的Call（收0.03）。最大盈利是？",
+    "options": ["0.20元", "0.13元", "0.07元", "无限"],
+    "answer": 1,
+    "explanation": "最大盈利 = 高K - 低K - 净权利金 = 3.20 - 3.00 - 0.07 = 0.13元/份。标的涨到3.20以上时达到最大盈利（两个Call都实值，买入的赚0.20减去净成本0.07）。",
+    "knowledgeCard": {
+      "title": "价差的盈亏计算",
+      "content": "Bull Call Spread三个关键数字：最大亏损=净权利金(0.07)，最大盈利=行权价差-净权利金(0.13)，盈亏平衡=低K+净权利金(3.07)。风险回报比=0.13:0.07≈1.86:1。",
+      "funFact": "实战中，很多交易员偏好盈亏平衡点附近的spread——如果胜率超过50%就能长期盈利。这比单纯买Call的'赌大的'策略更稳定。"
+    },
+    "xp": 15,
+    "tags": ["价差计算", "盈亏平衡"]
+  },
+  {
+    "id": "derivatives-3-3-02",
+    "chapter": 3,
+    "level": 3,
+    "order": 2,
+    "type": "multiple_choice",
+    "difficulty": "medium",
+    "story": "老张持有10万股某股票（现价10元），他很看好长期但担心下周财报不好会短期暴跌。他决定买入保护性Put，行权价9.5元，权利金0.3元/股。",
+    "question": "股票现价10元，买入行权价9.5的Put（权利金0.3）。这个保护性Put策略的最大亏损是？",
+    "options": ["0.3元/股", "0.5元/股", "0.8元/股", "10元/股"],
+    "answer": 2,
+    "explanation": "最大亏损 = (现价 - 行权价) + 权利金 = (10 - 9.5) + 0.3 = 0.8元/股。即使股价跌到0，你也能以9.5卖出，加上权利金成本0.3，总损失0.8。相比无保护时最大亏损10元，保险效果明显。",
+    "knowledgeCard": {
+      "title": "保护性Put的保险成本",
+      "content": "保护性Put的'免赔额'= 现价 - 行权价 = 0.5元（自担部分）。'保费'= 权利金0.3元。总最大损失 = 免赔额 + 保费。行权价越接近现价，保护越好但保费越贵。",
+      "funFact": "机构投资者通常在市场平静时（波动率低→期权便宜）买入保护性Put，就像阳光明媚时买保险最划算。等暴风雨来了再买保险就贵得离谱了。"
+    },
+    "xp": 15,
+    "tags": ["Protective Put", "最大亏损"]
+  },
+  {
+    "id": "derivatives-3-3-03",
+    "chapter": 3,
+    "level": 3,
+    "order": 3,
+    "type": "multiple_choice",
+    "difficulty": "medium",
+    "story": "投资者小陈觉得市场要出大事（可能暴涨也可能暴跌），但不确定方向。他想找一个'无论涨跌都能赚钱'的策略。",
+    "question": "同时买入相同行权价的Call和Put（Long Straddle），这个策略在什么情况下盈利？",
+    "options": ["只有大涨时", "只有大跌时", "标的大幅波动（无论方向）时", "标的不动时"],
+    "answer": 2,
+    "explanation": "Long Straddle=买Call+买Put（同行权价同到期日）。标的大涨→Call赚钱覆盖两份权利金。标的大跌→Put赚钱覆盖两份权利金。标的不动→两份权利金全亏。所以需要大波动。",
+    "knowledgeCard": {
+      "title": "跨式组合——赌波动",
+      "content": "成本=Call权利金+Put权利金（比单独买贵）。盈亏平衡有两个点：K+总权利金（向上），K-总权利金（向下）。标的要突破任一点才能盈利。",
+      "funFact": "很多交易员在重大事件（如美联储议息、财报发布、大选结果）前建立Straddle。但聪明钱早就进场了——事件公布时波动率通常骤降（IV Crush），即使方向对了也可能亏钱。"
+    },
+    "xp": 15,
+    "tags": ["Straddle", "做多波动"]
+  },
+  {
+    "id": "derivatives-3-3-04",
+    "chapter": 3,
+    "level": 3,
+    "order": 4,
+    "type": "multiple_choice",
+    "difficulty": "medium",
+    "story": "期权策略课上，老师总结：'新手先从四种基础策略开始，每种策略就是一种市场观点的表达。'他画了一张市场预期与策略的对应表。",
+    "question": "以下市场预期与策略的匹配，哪个是正确的？",
+    "options": ["强烈看跌 → Covered Call", "温和看涨 → Long Straddle", "看大波动但方向不确定 → Long Straddle", "看横盘不动 → Long Call"],
+    "answer": 2,
+    "explanation": "Long Straddle适合'预期大波动但方向不确定'的情况。Covered Call适合温和看涨/横盘。Long Call适合强烈看涨。看横盘应该卖出期权（Short Straddle/Iron Condor）。",
+    "knowledgeCard": {
+      "title": "策略与市场预期匹配",
+      "content": "看涨→Long Call/Bull Spread。看跌→Long Put/Bear Spread。看波动→Long Straddle/Strangle。看横盘→Short Straddle/Iron Condor/Covered Call。选对策略比选对方向更重要。",
+      "funFact": "统计研究表明，美股市场70%的时间处于缓涨或横盘状态，只有30%的时间在剧烈波动。这就是为什么卖出期权策略长期胜率较高——但那30%的亏损可能很致命。"
+    },
+    "xp": 15,
+    "tags": ["策略选择", "市场预期"]
+  },
+  {
+    "id": "derivatives-3-4-01",
+    "chapter": 3,
+    "level": 4,
+    "order": 1,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "小刘构建了一个Iron Condor：卖出K=2.90的Put + 买入K=2.80的Put + 卖出K=3.20的Call + 买入K=3.30的Call。净收权利金0.05元。他想确认最大亏损。",
+    "question": "Iron Condor（宽度0.10的翅膀），净收权利金0.05。最大单侧亏损是？",
+    "options": ["0.05元", "0.10元", "0.15元", "无限"],
+    "answer": 0,
+    "explanation": "Iron Condor最大亏损 = 翅膀宽度 - 净权利金 = 0.10 - 0.05 = 0.05元。标的在2.90~3.20之间到期→最大盈利0.05。突破到2.80以下或3.30以上→最大亏损0.05。风险有限，盈利也有限。",
+    "knowledgeCard": {
+      "title": "Iron Condor——赚横盘的钱",
+      "content": "Iron Condor = Bull Put Spread + Bear Call Spread。本质是赌标的在一个区间内横盘。四条腿都是限制风险的：买入的外侧期权'兜底'。是卖方策略中风险最可控的。",
+      "funFact": "有人把Iron Condor比作'开餐厅'——大多数月份稳赚一点（70%胜率），偶尔一次大亏可能吃掉几个月利润。关键是严格止损和仓位控制。"
+    },
+    "xp": 20,
+    "tags": ["Iron Condor", "区间策略"]
+  },
+  {
+    "id": "derivatives-3-4-02",
+    "chapter": 3,
+    "level": 4,
+    "order": 2,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "老王用Covered Call策略：持有10000份50ETF（现价3.10），卖出1张行权价3.20的Call（收0.04元/份权利金）。到期时50ETF涨到3.35。",
+    "question": "Covered Call：持有ETF@3.10，卖出K=3.20的Call收0.04。到期时ETF=3.35。老王的总盈利是？",
+    "options": ["0.14元/份", "0.25元/份", "0.10元/份", "0.04元/份"],
+    "answer": 0,
+    "explanation": "ETF涨到3.35但被行权→以3.20卖出。股票盈利 = 3.20 - 3.10 = 0.10。权利金收入 = 0.04。总盈利 = 0.10 + 0.04 = 0.14元/份。他放弃了3.20以上的涨幅（少赚了0.15），但收了0.04权利金作为补偿。",
+    "knowledgeCard": {
+      "title": "Covered Call的代价",
+      "content": "Covered Call最大盈利 = (K - 买入价) + 权利金。当标的大涨时，你只能拿到K就被'截胡'了。这就是'卖出上行空间'的代价——赚了安稳，少了惊喜。",
+      "funFact": "研究表明，长期系统性执行Covered Call策略的年化收益和直接持股接近，但波动率低约30%。适合不追求暴利但追求稳定现金流的退休投资者。"
+    },
+    "xp": 20,
+    "tags": ["Covered Call", "盈亏计算"]
+  },
+  {
+    "id": "derivatives-3-4-03",
+    "chapter": 3,
+    "level": 4,
+    "order": 3,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "小陈卖出了10张行权价2.90的50ETF Put（收权利金0.06元/份），此时50ETF=3.05。他觉得2.90是'铁底'，不可能跌到。结果一周后跌到了2.75。",
+    "question": "卖出Put行权价2.90，收权利金0.06，到期标的=2.75。卖方每份亏损是？",
+    "options": ["0.06元", "0.09元", "0.15元", "0.30元"],
+    "answer": 1,
+    "explanation": "卖Put被行权→以2.90买入价值2.75的标的→行权亏损 = 2.90 - 2.75 = 0.15。抵扣收到的权利金0.06→净亏损 = 0.15 - 0.06 = 0.09元/份。10张×10000份 = 亏损9000元。",
+    "knowledgeCard": {
+      "title": "Short Put亏损计算",
+      "content": "卖Put净亏损 = (K - S) - Premium = (2.90-2.75) - 0.06 = 0.09。盈亏平衡点 = K - Premium = 2.90 - 0.06 = 2.84。标的跌破2.84才真正亏钱。",
+      "funFact": "2020年3月美股熔断期间，大量Short Put被行权，有投资者以为永远不会到的'安全'行权价被轻松击穿。市场教训：没有'铁底'这回事。"
+    },
+    "xp": 20,
+    "tags": ["Short Put", "亏损计算"]
+  },
+  {
+    "id": "derivatives-3-4-04",
+    "chapter": 3,
+    "level": 4,
+    "order": 4,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "某期权培训师总结：'每种策略都有一个Greek是它的主要敌人。'他让学员配对：Long Call的主要敌人是____。",
+    "question": "对于Long Call（买入看涨期权）持有者来说，最大的'隐形敌人'是哪个Greek？",
+    "options": ["Delta（方向敏感度）", "Theta（时间衰减）", "Vega（波动率敏感度）", "Rho（利率敏感度）"],
+    "answer": 1,
+    "explanation": "Long Call持有者的Theta是负的——每天时间价值在流失。即使标的方向对了，如果涨得不够快或不够多，时间衰减可能让你不赚反亏。Theta是期权买方的'房租'——每天都在交。",
+    "knowledgeCard": {
+      "title": "Greeks与策略的关系",
+      "content": "买方策略：Theta为敌（每天亏时间价值），Vega为友（波动率涨利好）。卖方策略：Theta为友（时间流逝赚钱），Vega为敌（波动率涨不利）。理解Greeks就是理解你的真正风险。",
+      "funFact": "有个笑话：期权买方最怕的四个字是'横盘震荡'——方向不动，时间照流，Theta一天天把你的权利金磨没。而卖方最喜欢的就是这四个字。"
+    },
+    "xp": 20,
+    "tags": ["Theta", "Greeks", "策略风险"]
+  },
+  {
+    "id": "derivatives-3-5-01",
+    "chapter": 3,
+    "level": 5,
+    "order": 1,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "高级策略课上讨论'领口策略'(Collar)：持有股票 + 买入低行权价Put + 卖出高行权价Call。相当于给持仓设了'上限'和'下限'。",
+    "question": "Collar策略（持股 + 买Put + 卖Call）的本质是什么？",
+    "options": ["追求最大收益", "用卖Call的权利金支付买Put的保费，在有限区间内持有标的", "纯投机做空", "只在波动率极高时有用"],
+    "answer": 1,
+    "explanation": "Collar = 持股收益被'装进一个管道'：Put保护了下限（跌不怕），卖Call封住了上限（涨不超过行权价）。卖Call收的权利金刚好或部分抵消买Put的花费，形成低成本甚至零成本保护。",
+    "knowledgeCard": {
+      "title": "Collar——零成本保险",
+      "content": "如果卖出Call的权利金=买入Put的权利金，就是'零成本领口'。你在0费用下获得了下跌保护，代价是放弃行权价以上的涨幅。很多上市公司高管用此策略锁定收益。",
+      "funFact": "Facebook（现Meta）CEO扎克伯格在IPO后被曝使用Collar策略锁定部分股票价值——他用卖Call收入买Put，在不卖股票的前提下锁定了数十亿美元的下限。"
+    },
+    "xp": 20,
+    "tags": ["Collar", "零成本保护"]
+  },
+  {
+    "id": "derivatives-3-5-02",
+    "chapter": 3,
+    "level": 5,
+    "order": 2,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "小赵构建Bear Put Spread：买入K=3.10的Put（付0.12），卖出K=2.90的Put（收0.04）。净支出0.08。50ETF当前3.05。",
+    "question": "Bear Put Spread：买K=3.10 Put（0.12），卖K=2.90 Put（0.04），净支出0.08。盈亏平衡点是？",
+    "options": ["3.10", "3.02", "2.98", "2.90"],
+    "answer": 1,
+    "explanation": "Bear Put Spread的盈亏平衡 = 高K - 净权利金 = 3.10 - 0.08 = 3.02。标的跌到3.02以下才开始盈利，跌到2.90及以下达到最大盈利0.12（=行权价差0.20-净支出0.08）。",
+    "knowledgeCard": {
+      "title": "Bear Put Spread计算",
+      "content": "最大盈利 = 高K - 低K - 净权利金 = 0.20 - 0.08 = 0.12。最大亏损 = 净权利金 = 0.08。盈亏平衡 = 高K - 净权利金 = 3.02。风险回报比 = 1.5:1。",
+      "funFact": "Bear Spread是看跌市场中最保守的期权策略之一。相比直接买Put（全额亏损权利金），spread用较低成本换取有限利润，更适合'温和看跌'的判断。"
+    },
+    "xp": 20,
+    "tags": ["Bear Spread", "盈亏计算"]
+  },
+  {
+    "id": "derivatives-3-5-03",
+    "chapter": 3,
+    "level": 5,
+    "order": 3,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "专业交易员老孙对比两种做多策略：A.直接买入50ETF现货 vs B.用同等资金构建Long Call替代。他在分析两者的风险收益差异。",
+    "question": "相比直接买入现货，用Long Call替代做多的优势是什么？",
+    "options": ["收益率更低但更稳定", "最大亏损有限（仅权利金），且不占用大量资金买标的", "完全没有风险", "不受时间影响"],
+    "answer": 1,
+    "explanation": "Long Call优势：①最大亏损=权利金（远小于买现货可能的亏损）；②资金占用少，剩余资金可以做其他投资或放货币基金赚利息。劣势：时间衰减、需要涨超过盈亏平衡才赚、没有分红。",
+    "knowledgeCard": {
+      "title": "Call替代做多的场景",
+      "content": "当你想'试探性看涨'但不愿承受满仓下跌风险时，用一小部分资金买Call是好选择。你最多亏权利金，但保留了参与上涨的权利。适合事件性交易（如财报前）。",
+      "funFact": "华尔街有所谓'替代策略'(Replacement Strategy)：用LEAPS（长期期权）+ 国债替代直接持股。90%资金买国债赚利息，10%买LEAPS博上涨——本金有保底，上涨有参与。"
+    },
+    "xp": 20,
+    "tags": ["Long Call替代", "资金效率"]
+  },
+  {
+    "id": "derivatives-3-5-04",
+    "chapter": 3,
+    "level": 5,
+    "order": 4,
+    "type": "multiple_choice",
+    "difficulty": "hard",
+    "story": "资深交易员总结期权策略选择的核心逻辑：'先判断方向（涨/跌/横盘），再判断幅度（大/小），最后判断时间（快/慢）。三个维度决定了你该用什么策略。'",
+    "question": "如果你判断'短期小幅看涨、波动率偏高'，最合适的策略是？",
+    "options": ["Long Call（买入远月深度虚值Call）", "Bull Call Spread（近月、行权价接近当前价）", "Long Straddle", "Short Put"],
+    "answer": 1,
+    "explanation": "短期小幅看涨→Bull Spread比Long Call好（不需要大涨也能赚满）。波动率偏高→买入策略吃亏（Vega买贵了），Spread部分抵消了IV影响（买卖的Vega对冲）。近月行权价接近现价的Spread最匹配。",
+    "knowledgeCard": {
+      "title": "三维度策略选择法",
+      "content": "方向：涨用Call侧/跌用Put侧。幅度：大幅→Long单腿，小幅→Spread。波动率：IV高→卖方策略或Spread；IV低→买方策略。时间：快到→近月，慢→远月。组合这些维度选策略。",
+      "funFact": "有研究表明，选对策略（如在高IV时用Spread代替Long Call）比选对方向对最终盈利的影响更大。方向对了但策略错了，可能照样亏钱——这就是期权的'智商税'。"
+    },
+    "xp": 20,
+    "tags": ["策略选择", "多维度分析"]
+  }
+]
