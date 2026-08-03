@@ -163,11 +163,23 @@ export default function HomeDashboard() {
         </div>
       )}
 
-      {/* Market selection */}
+      {/* Explore more */}
       <div className="space-y-3 pt-4">
         <h2 className="text-sm font-bold uppercase tracking-wider text-duo-gray-300 dark:text-slate-400">
           探索更多
         </h2>
+        <Link
+          href="/learn/path"
+          className="card flex items-center gap-4 border-duo-purple hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
+        >
+          <span className="text-3xl">🗺️</span>
+          <div>
+            <h3 className="font-bold dark:text-slate-100">学习路径</h3>
+            <p className="text-sm text-duo-gray-300 dark:text-slate-400">
+              查看你的学习地图，解锁新章节
+            </p>
+          </div>
+        </Link>
         <MarketLinks />
       </div>
     </div>
