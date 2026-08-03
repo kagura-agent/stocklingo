@@ -1,0 +1,39 @@
+{
+  "market": "derivatives",
+  "name": "期权与衍生品",
+  "icon": "📊",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "衍生品是什么",
+      "titleEn": "What Are Derivatives",
+      "description": "从保险和赌约的比喻出发，理解衍生品的本质和风险",
+      "levels": 5,
+      "unlockCondition": null
+    },
+    {
+      "id": 2,
+      "title": "期权入门",
+      "titleEn": "Options Basics",
+      "description": "看涨、看跌、权利金——掌握期权的基本语言",
+      "levels": 5,
+      "unlockCondition": { "chapter": 1, "minScore": 0.6 }
+    },
+    {
+      "id": 3,
+      "title": "期权策略基础",
+      "titleEn": "Basic Option Strategies",
+      "description": "从买入看涨到保护性看跌，学会组合期权赚钱",
+      "levels": 5,
+      "unlockCondition": { "chapter": 2, "minScore": 0.6 }
+    },
+    {
+      "id": 4,
+      "title": "期货与风险管理",
+      "titleEn": "Futures & Risk Management",
+      "description": "期货合约、保证金追缴与套期保值——散户的生存指南",
+      "levels": 5,
+      "unlockCondition": { "chapter": 3, "minScore": 0.6 }
+    }
+  ]
+}
