@@ -7,7 +7,7 @@ import { getDueCount } from "@/lib/srs";
 
 const tabs = [
   { href: "/", label: "首页", icon: "🏠" },
-  { href: "/learn", label: "学习", icon: "📚" },
+  { href: "/learn/path", label: "学习", icon: "📚" },
   { href: "/daily", label: "每日", icon: "📅" },
   { href: "/review", label: "复习", icon: "📝" },
   { href: "/challenge", label: "挑战", icon: "⚡" },
